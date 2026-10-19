@@ -1,0 +1,49 @@
+
+TEST below_threshold (512 MiB)
+BEFORE bytes=536870912 capacity=671088640 usage=80.00% threshold=90%
+OK: threshold is not exceeded; no archive needed.
+PASS below_threshold
+
+TEST exact_threshold (512 MiB)
+BEFORE bytes=536870912 capacity=671088640 usage=80.00% threshold=80%
+OK: threshold is not exceeded; no archive needed.
+PASS exact_threshold
+
+TEST one_oldest (512 MiB)
+BEFORE bytes=536870912 capacity=671088640 usage=80.00% threshold=70%
+SELECTED files=1 bytes=134217728
+ARCHIVE C:\Users\gleb\AppData\Local\Temp\lab1-tests-33d4fc30cbee4e8a9d2cbbb5ec41c1cf\one_oldest\backup space\archive-20261017T155728Z-7d082afa25b54caa8da361fe7691756e.tar.gz
+AFTER bytes=402653184 usage=60.00%
+OK: archive verified; archived originals removed.
+PASS one_oldest
+
+TEST two_oldest (512 MiB)
+BEFORE bytes=536870912 capacity=671088640 usage=80.00% threshold=50%
+SELECTED files=2 bytes=268435456
+ARCHIVE C:\Users\gleb\AppData\Local\Temp\lab1-tests-33d4fc30cbee4e8a9d2cbbb5ec41c1cf\two_oldest\backup space\archive-20261017T155731Z-9fdd2658d03f4854b76e8df6225fff44.tar.gz
+AFTER bytes=268435456 usage=40.00%
+OK: archive verified; archived originals removed.
+PASS two_oldest
+
+TEST lzma (512 MiB)
+BEFORE bytes=536870912 capacity=671088640 usage=80.00% threshold=70%
+SELECTED files=1 bytes=134217728
+ARCHIVE C:\Users\gleb\AppData\Local\Temp\lab1-tests-33d4fc30cbee4e8a9d2cbbb5ec41c1cf\lzma\backup space\archive-20261017T155735Z-4aff53ad98db431cad719efea7aebef2.tar.lzma
+AFTER bytes=402653184 usage=60.00%
+OK: archive verified; archived originals removed.
+PASS lzma
+
+TEST zero_threshold (512 MiB)
+BEFORE bytes=536870912 capacity=671088640 usage=80.00% threshold=0%
+SELECTED files=4 bytes=536870912
+ARCHIVE C:\Users\gleb\AppData\Local\Temp\lab1-tests-33d4fc30cbee4e8a9d2cbbb5ec41c1cf\zero_threshold\backup space\archive-20261017T155739Z-277aec93993b4b16b9728b3f8a2f423e.tar.gz
+AFTER bytes=0 usage=0.00%
+OK: archive verified; archived originals removed.
+PASS zero_threshold
+PASS bad_threshold (512 MiB preserved)
+PASS bad_capacity (512 MiB preserved)
+PASS nested_backup (512 MiB preserved)
+PASS invalid_compression (512 MiB preserved)
+PASS locked (512 MiB preserved)
+
+RESULT: 11 tests passed.
